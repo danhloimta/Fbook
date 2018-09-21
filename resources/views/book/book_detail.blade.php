@@ -118,7 +118,6 @@
                         <div class="tab-pane active" id="Details">
                             <div class="row event-list">
                                 <div class="col-xs-12 col-sm-8 col-md-12 revsdv fix">
-                                    @foreach ($reviews as $review)
                                         <div class="event-item wow fadeInRight comment-box">
                                             <div class="well padding5 owner-clear relative-position">
                                                 <div class="media padding5">
@@ -163,7 +162,9 @@
                                                 </div>
                                             </div>
                                         </div>
-                                    @endforeach
+                                        <div class="button">
+                                            <a href="" class="btn btn-info"> Add Review</a>
+                                        </div>
                                 </div>
                             </div>
                         </div>

@@ -22,9 +22,14 @@ class ReviewBookEloquentRepository extends AbstractEloquentRepository implements
     public function show($data = []){
         $review = Review::where('book_id', '=', $data)
             ->orderBy('created_at', 'desc')
-            ->take(3)
+            ->take(config('view.taking_numb.review'))
             ->get();
 
         return $review;
+    }
+
+    public function find($id)
+    {
+        return $this->model()->findOrFail($id)->get();
     }
 }

@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Repositories\Contracts\ReviewBookRepository;
 use Illuminate\Http\Request;
 use App\Repositories\Contracts\BookRepository;
+use Auth;
 
 class ReviewBookController extends Controller
 {
@@ -25,6 +26,12 @@ class ReviewBookController extends Controller
 
         $reviews = $this->review->show($id);
 
+        $flag = true;
+        $user_id = 1;
+        $isReview = $this->review->find($user_id);
+
+        dd($isReview);
+        //if ($user->id != $book->review)
         return view('book.review', compact('book', 'reviews'));
     }
 

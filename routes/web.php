@@ -35,3 +35,7 @@ Route::prefix('admin')->group(function () {
     Route::resource('/offices', 'OfficeController');
     Route::resource('/users', 'UserController');
 });
+
+Auth::routes();
+
+Route::get('/home', 'HomeController@index')->name('home');

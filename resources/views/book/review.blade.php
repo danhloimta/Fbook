@@ -1,3 +1,4 @@
+{{-- @if(Auth::check()->) --}}
 @extends('layout.app')
 
 @section('header')
