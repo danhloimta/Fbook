@@ -30,6 +30,8 @@ class ReviewBookEloquentRepository extends AbstractEloquentRepository implements
 
     public function find($id)
     {
-        return $this->model()->findOrFail($id)->get();
+        $isReview = Review::where('user_id', '=', $id)->get();
+
+        return $isReview;
     }
 }

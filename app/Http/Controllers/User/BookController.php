@@ -8,6 +8,7 @@ use App\Repositories\Contracts\BookCategoryRepository;
 use App\Repositories\Contracts\BookRepository;
 use App\Repositories\Contracts\MediaRepository;
 use App\Repositories\Contracts\CategoryRepository;
+use App\Repositories\Contracts\ReviewBookRepository;
 
 class BookController extends Controller
 {
@@ -19,6 +20,8 @@ class BookController extends Controller
 
     protected $media;
 
+    protected $review;
+
     protected $with = [
         'medias',
         'categories',
@@ -26,12 +29,17 @@ class BookController extends Controller
         'reviews',
     ];
 
-    public function __construct(BookRepository $book, CategoryRepository $category, BookCategoryRepository $bookCategory, MediaRepository $media)
-    {
+    public function __construct(BookRepository $book,
+    CategoryRepository $category,
+    BookCategoryRepository $bookCategory,
+    MediaRepository $media,
+    ReviewBookRepository $review
+    ) {
         $this->book = $book;
         $this->category = $category;
         $this->bookCategory = $bookCategory;
         $this->media = $media;
+        $this->review = $review;
     }
 
     /**
@@ -84,7 +92,15 @@ class BookController extends Controller
         $relatedBookIds = $this->bookCategory->getBooks($book->categories->pluck('id'));
         $relatedBooks = $this->book->getData(['medias'], $relatedBookIds);
 
-        return view('book.book_detail', compact('book', 'relatedBooks'));
+        $flag = true;
+        $user_id = 1;
+        $isReview = $this->review->find($user_id);
+
+        if ($isReview) {
+            $flag = true;
+        }
+
+        return view('book.book_detail', compact('book', 'relatedBooks', 'flag'));
     }
 
     /**

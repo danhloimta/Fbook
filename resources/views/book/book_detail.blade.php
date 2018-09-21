@@ -162,9 +162,11 @@
                                                 </div>
                                             </div>
                                         </div>
-                                        <div class="button">
-                                            <a href="" class="btn btn-info"> Add Review</a>
-                                        </div>
+                                        @if ($flag == true)
+                                            <div class="button">
+                                                <a href="{{ route('book.review', $book->slug . '-' . $book->id) }}" class="btn btn-info"> Add Review</a>
+                                            </div>
+                                        @endif
                                 </div>
                             </div>
                         </div>
