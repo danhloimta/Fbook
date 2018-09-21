@@ -1,8 +1,4 @@
-<<<<<<< HEAD
 @extends('auth.layouts.app')
-=======
-@extends('layouts.app')
->>>>>>> fix2
 
 @section('content')
 <div class="container">

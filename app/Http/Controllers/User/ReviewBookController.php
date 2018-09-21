@@ -34,6 +34,7 @@ class ReviewBookController extends Controller
         $id = (int)last(explode('-', $param));
         $request->merge(['book_id' => $id]);
         $this->review->store($request->all());
+        
         return back();
     }
 

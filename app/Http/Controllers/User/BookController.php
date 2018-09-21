@@ -9,6 +9,7 @@ use App\Repositories\Contracts\BookRepository;
 use App\Repositories\Contracts\MediaRepository;
 use App\Repositories\Contracts\CategoryRepository;
 use App\Repositories\Contracts\ReviewBookRepository;
+use Auth;
 
 class BookController extends Controller
 {
@@ -89,18 +90,27 @@ class BookController extends Controller
     {
         $id = last(explode('-', $slug));
         $book = $this->book->find($id, $this->with);
-        $relatedBookIds = $this->bookCategory->getBooks($book->categories->pluck('id'));
-        $relatedBooks = $this->book->getData(['medias'], $relatedBookIds);
 
-        $flag = true;
-        $user_id = 1;
-        $isReview = $this->review->find($user_id);
+        if ($slug == $book->slug . '-' . $book->id) {
+            $relatedBookIds = $this->bookCategory->getBooks($book->categories->pluck('id'));
+            $relatedBooks = $this->book->getData(['medias'], $relatedBookIds);
 
-        if ($isReview) {
-            $flag = true;
+            $flag = false;
+
+            if (Auth::check()) {
+                $flag = true;
+                $user_id = Auth::check()->id;
+                $isReview = $this->review->find($user_id);
+
+                if ($isReview) {
+                    $flag = false;
+                }
+            }
+
+            return view('book.book_detail', compact('book', 'relatedBooks', 'flag'));
         }
 
-        return view('book.book_detail', compact('book', 'relatedBooks', 'flag'));
+        return view('error');
     }
 
     /**
