@@ -15,6 +15,10 @@ return [
         'sku' => 'Sku code',
         'publish' => 'Publish date',
         'description' => 'Description',
-    ]
+    ],
+    'rate' => 'Rate',
+    'home' => 'Home',
+    'review' => 'Review',
+    'summary' => 'Summary',
 
 ];

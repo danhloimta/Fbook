@@ -17,6 +17,8 @@ Route::get('/', 'HomeController@index');
 
 Route::group(['namespace' => 'User'], function () {
     Route::resource('books', 'BookController');
+    Route::get('books/{param}/review', 'ReviewBookController@index');
+    Route::post('books/{param}/review', 'ReviewBookController@update')->name('book.review');
 });
 
 Route::prefix('admin')->group(function () {

@@ -41,7 +41,7 @@
                             </div>
                         </div>
                         <div class="col-lg-7 col-md-7 col-sm-6 col-xs-12">
-                            
+
                             <div class="product-info-main">
                                 <div class="page-title">
                                     <h1>{{ $book->title }}</h1>
@@ -116,14 +116,55 @@
                     </ul>
                     <div class="tab-content">
                         <div class="tab-pane active" id="Details">
-                            <div class="valu">
-                              <p>The sporty Joust Duffle Bag can't be beat - not in the gym, not on the luggage carousel, not anywhere. Big enough to haul a basketball or soccer ball and some sneakers with plenty of room to spare, it's ideal for athletes with places to go.</p>
-                              <ul>
-                                <li><i class="fa fa-circle"></i>Dual top handles.</li>
-                                <li><i class="fa fa-circle"></i>Adjustable shoulder strap.</li>
-                                <li><i class="fa fa-circle"></i>Full-length zipper.</li>
-                                <li><i class="fa fa-circle"></i>L 29" x W 13" x H 11".</li>
-                              </ul>
+                            <div class="row event-list">
+                                <div class="col-xs-12 col-sm-8 col-md-12 revsdv fix">
+                                    @foreach ($reviews as $review)
+                                        <div class="event-item wow fadeInRight comment-box">
+                                            <div class="well padding5 owner-clear relative-position">
+                                                <div class="media padding5">
+                                                    <div class="medialeft">
+                                                        <a href="" class="avatar"><img src="https://cdn.iconscout.com/icon/free/png-256/avatar-369-456321.png" class="media-object" alt="avatar"></a>
+                                                    </div>
+                                                    <div class="media-body relative-position">
+                                                        <div class="content-comment">
+                                                            <div class="show tip-left">
+                                                                <strong>nguyen danh loi</strong>
+                                                                <i>2018-08-21 22:28:45</i>
+                                                                <div class="action">
+                                                                    <a href=""><i class="fa fa-trash-o" aria-hidden="true"></i></a>
+                                                                </div>
+                                                            </div>
+                                                            <h4 class="media-heading list-inline list-unstyled rating-star m-0">
+                                                                <li class="active"><i class="fa fa-star" aria-hidden="true"></i></li>
+                                                                <li class="active"><i class="fa fa-star" aria-hidden="true"></i></li>
+                                                                <li class="active"><i class="fa fa-star" aria-hidden="true"></i></li>
+                                                                <li class="active"><i class="fa fa-star" aria-hidden="true"></i></li>
+                                                                <li class="active"><i class="fa fa-star" aria-hidden="true"></i></li>
+                                                            </h4>
+                                                            <p class="m-0">Sach hay</p>
+                                                            <div class="custom-vote">
+                                                                <div class="float-right">
+                                                                    <div class="vote">
+                                                                        <p class="no-margin">
+                                                                            <i class="fa fa-caret-up" aria-hidden="true"></i>
+                                                                        </p>
+                                                                        <p class="no-margin mtop">
+                                                                            <i class="fa fa-caret-down" aria-hidden="true"></i>
+                                                                        </p>
+                                                                    </div>
+                                                                    <div class="count-vote">
+                                                                        <span>0</span>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                            <a href="" class="view_more"><i class="fa fa-eye" aria-hidden="true"></i> More</a>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    @endforeach
+                                </div>
                             </div>
                         </div>
                         <div class="tab-pane" id="Reviews">
@@ -162,7 +203,7 @@
                                 </div>
                             </div>
                         </div>
-                    </div>  
+                    </div>
                 </div>
                 <div class="new-book-area mt-60">
                     <div class="section-title text-center mb-30">
@@ -198,7 +239,7 @@
                                             </ul>
                                         </div>
                                         <h4><a href="{{ '/books/' . $relatedBooks[$i]->slug . '-' . $relatedBooks[$i]->id}}">{{ $relatedBooks[$i]->title }}</a></h4>
-                                    </div>  
+                                    </div>
                                 </div>
                             @endfor
                         @endif
@@ -234,7 +275,7 @@
                                         </div>
                                     @endfor
                                 @endif
-                            </div>  
+                            </div>
                         </div>
                     </div>
                     <div class="banner-area mb-30">
