@@ -34,16 +34,10 @@ return [
     ],
 
     'taking_numb' => [
-<<<<<<< HEAD
         'best_sharing_book' => 5,
         'top_book' => 6,
         'latest_book' => 12,
-=======
-        'book_best_sharing' => 5,
-        'book_top' => 6,
-        'book_latest' => 12,
         'review' => 3,
->>>>>>> fix2
     ],
 
     'random_numb' => [

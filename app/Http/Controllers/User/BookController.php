@@ -77,13 +77,13 @@ class BookController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function show($slug)
     {
-        $id = last(explode('-', $id));
+        $id = last(explode('-', $slug));
         $book = $this->book->find($id, $this->with);
         $relatedBookIds = $this->bookCategory->getBooks($book->categories->pluck('id'));
         $relatedBooks = $this->book->getData(['medias'], $relatedBookIds);
-        
+
         return view('book.book_detail', compact('book', 'relatedBooks'));
     }
 
