@@ -95,19 +95,20 @@ class BookController extends Controller
             $relatedBookIds = $this->bookCategory->getBooks($book->categories->pluck('id'));
             $relatedBooks = $this->book->getData(['medias'], $relatedBookIds);
 
-            $flag = false;
+            $data['book_id'] = $book->id;
+            $reviews = $this->review->show($data);
 
+            $flag = true;
             if (Auth::check()) {
-                $flag = true;
-                $user_id = Auth::check()->id;
-                $isReview = $this->review->find($user_id);
-
-                if ($isReview) {
+                $isReview = $this->review->checkReview($data);
+                if ($isReview->count() > 0) {
                     $flag = false;
                 }
+            } else {
+                $flag = false;
             }
 
-            return view('book.book_detail', compact('book', 'relatedBooks', 'flag'));
+            return view('book.book_detail', compact('book', 'relatedBooks', 'flag', 'reviews'));
         }
 
         return view('error');
