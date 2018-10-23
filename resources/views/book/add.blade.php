@@ -6,7 +6,7 @@
             <div class="col-lg-12">
                 <div class="breadcrumbs-menu">
                     <ul>
-                        <li><a href="#">Home</a></li>
+                        <li><a href="{{ asset('/') }}">{{ __('page.home') }}</a></li>
                         <li><a href="#" class="active">{{ __('page.book.add') }}</a></li>
                     </ul>
                 </div>
@@ -101,7 +101,8 @@
                                             [
                                                 'id' => 'img-upload',
                                                 'required' => 'required',
-                                                'class' => 'form-control m-input'
+                                                'class' => 'form-control m-input',
+                                                'accept' => 'image/png, image/jpg, image/jpeg, image/bmp, image/gif'
                                             ]
                                         ) !!}
                                     </span>
@@ -189,6 +190,22 @@
         jQuery(document).ready(function() {
             tinymce.init({
                 selector: 'textarea#mytextarea'
+            });
+
+            $("#img-upload").change(function() {
+                var val = $(this).val();
+                switch(val.substring(val.lastIndexOf('.') + 1).toLowerCase()){
+                    case 'gif': case 'jpg': case 'png': case 'gif' : case 'bmp':
+                        break;
+                    default:
+                        $(this).val('');
+                        swal({
+                            type: 'error',
+                            title: 'Oops...',
+                            text: 'Not an image!',
+                        });
+                        break;
+                }
             });
         });
     </script>

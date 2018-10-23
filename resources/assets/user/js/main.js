@@ -810,7 +810,7 @@ $(document).on('click', '.login', function(e) {
     el.class = 'btn btn-info';
     el.innerText = 'Login WSM';
     swal({
-        title: 'You need login to review!',
+        title: 'You need login!',
         content: el,
         className: 'review',
     });

@@ -123,7 +123,7 @@ class BookController extends Controller
             ];
             $this->owner->store($data);
 
-            return redirect()->route('books.show', $book->slug . '-' . $book->id);
+            return redirect()->route('books.show', $book->slug . '-' . $book->id)->with('success', __('admin.success'));
         } catch (Exception $e) {
             return view('error');
         }
@@ -255,7 +255,7 @@ class BookController extends Controller
                 $this->bookCategory->store($request->all());
             }
 
-            return back();
+            return back()->with('success', __('admin.success'));;
         } catch (Exception $e) {
             return view('error');
         }

@@ -32,7 +32,7 @@
                                 <div class="form-group m-form__group row">
                                         {!! Form::label('avatar', __('admin.avatarBook'), ['class' => 'col-2 mb-0']) !!}
                                     <div class="col-10 custom-file">
-                                        {!! Form::file('avatar', ['class' => 'custom-file-input', 'id' => 'customFile', 'required' => 'requiered']) !!}
+                                        {!! Form::file('avatar', ['class' => 'custom-file-input', 'id' => 'customFile', 'required' => 'requiered', 'accept' => 'image/png, image/jpg, image/jpeg, image/bmp, image/gif']) !!}
                                         {!! Form::label('customFile', 'Choose file', ['class' => 'custom-file-label col-10 ml-3']) !!}
                                     </div>
                                 </div>
@@ -103,6 +103,22 @@
         jQuery(document).ready(function() {
             tinymce.init({
                 selector: 'textarea#mytextarea'
+            });
+
+            $("#customFile").change(function() {
+                var val = $(this).val();
+                switch(val.substring(val.lastIndexOf('.') + 1).toLowerCase()){
+                    case 'gif': case 'jpg': case 'png': case 'gif' : case 'bmp':
+                        break;
+                    default:
+                        $(this).val('');
+                        swal({
+                            type: 'error',
+                            title: 'Oops...',
+                            text: 'Not an image!',
+                        });
+                        break;
+                }
             });
         });
     </script>

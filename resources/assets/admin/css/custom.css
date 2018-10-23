@@ -21,6 +21,7 @@
     font-size: 50px;
 }
 
+<<<<<<< HEAD
 .avatar-edit {
     margin-top: 30px; 
     height: 100px;
@@ -30,4 +31,16 @@
 .role-box {
     margin-left: 5px;
     margin-top: 10px;
+=======
+.dataTables_wrapper .dataTable th {
+    cursor: pointer;
+}
+
+.dataTables_wrapper #m_table_1.dataTable td:last-child {
+    display: -webkit-inline-box;
+}
+
+#m_table_1 .sorting_1 {
+    display: table-cell;
+>>>>>>> fix4
 }

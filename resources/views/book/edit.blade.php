@@ -6,7 +6,7 @@
             <div class="col-lg-12">
                 <div class="breadcrumbs-menu">
                     <ul>
-                        <li><a href="#">{{ __('page.home') }}</a></li>
+                        <li><a href="{{ asset('/') }}">{{ __('page.home') }}</a></li>
                         <li><a href="#" class="active">{{ __('page.book.edit') }}</a></li>
                     </ul>
                 </div>
@@ -51,7 +51,6 @@
                                 'class' => 'form-control m-input'
                             ]
                         ) !!}
-                        {!! $errors->first('title', '<p style="color:red">:message</p>') !!}
                     </div>
                     <div class="row">
                         <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
@@ -69,7 +68,6 @@
                                         'class' => 'form-control m-input'
                                     ]
                                 ) !!}
-                                {!! $errors->first('author', '<p style="color:red">:message</p>') !!}
                             </div>
                         </div>
                         <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
@@ -87,7 +85,6 @@
                                         'class' => 'form-control m-input'
                                     ]
                                 ) !!}
-                                {!! $errors->first('total_pages', '<p style="color:red">:message</p>') !!}
                             </div>
                         </div>
                     </div>
@@ -102,7 +99,8 @@
                                             'avatar',
                                             [
                                                 'id' => 'img-upload',
-                                                'class' => 'form-control m-input'
+                                                'class' => 'form-control m-input',
+                                                'accept' => 'image/png, image/jpg, image/jpeg, image/bmp, image/gif'
                                             ]
                                         ) !!}
                                     </span>
@@ -115,7 +113,6 @@
                                         'disabled' => 'disabled'
                                     ]
                                 ) !!}
-                                {!! $errors->first('avatar', '<p style="color:red">:message</p>') !!}
                             </div>
                         </div>
                     </div>
@@ -158,7 +155,6 @@
                                         'class' => 'form-control m-input',
                                     ]
                                 ) !!}
-                                {!! $errors->first('sku', '<p style="color:red">:message</p>') !!}
                             </div>
                         </div>
                         <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
@@ -176,7 +172,6 @@
                                         'class' => 'form-control m-input',
                                     ]
                                 ) !!}
-                                {!! $errors->first('publish_date', '<p style="color:red">:message</p>') !!}
                             </div>
                         </div>
                     </div>
@@ -193,7 +188,6 @@
                                 'class' => 'form-control m-input',
                             ]
                         ) !!}
-                        {!! $errors->first('description', '<p style="color:red">:message</p>') !!}
                     </div>
                     <div class="single-register">
                         {!! Form::submit(__('page.submit'), ['class' => 'btn btn-info']) !!}
@@ -217,6 +211,22 @@
         jQuery(document).ready(function() {
             tinymce.init({
                 selector: 'textarea#mytextarea'
+            });
+
+            $("#img-upload").change(function() {
+                var val = $(this).val();
+                switch(val.substring(val.lastIndexOf('.') + 1).toLowerCase()){
+                    case 'gif': case 'jpg': case 'png': case 'gif' : case 'bmp':
+                        break;
+                    default:
+                        $(this).val('');
+                        swal({
+                            type: 'error',
+                            title: 'Oops...',
+                            text: 'Not an image!',
+                        });
+                        break;
+                }
             });
         });
     </script>
