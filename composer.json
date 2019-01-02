@@ -9,6 +9,7 @@
         "barryvdh/laravel-debugbar": "^3.2",
         "fideloper/proxy": "^4.0",
         "framgia/fauth-php": "dev-develop",
+        "laravel/browser-kit-testing": "^4.1",
         "laravel/framework": "5.6.*",
         "laravel/socialite": "^3.1",
         "laravel/tinker": "^1.0",
